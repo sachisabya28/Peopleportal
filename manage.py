@@ -16,6 +16,9 @@ def make_shell_context():
     to the shell importing them automatically
     on `python manager.py shell`.
     """
+    with app.app_context():
+        db.init_app(app)
+        db.create_all()
     return dict(app=app, db=db, User=User, Roles=Roles,
                 Employee=Employee, Rooms=Rooms )
 
