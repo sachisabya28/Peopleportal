@@ -18,6 +18,6 @@ def create_app(configuration):
     return app
 
 
-app = create_app(os.getenv('ENVIRONMENT'))
+app = create_app(os.getenv('ENVIRONMENT', 'production'))
 from app import views
 
