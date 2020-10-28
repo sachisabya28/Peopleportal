@@ -19,10 +19,5 @@ def create_app(configuration):
 
 
 app = create_app(os.getenv('ENVIRONMENT'))
-with app.app_context():
-    db.init_app(app)
-    db.create_all()
-
-
 from app import views
 
