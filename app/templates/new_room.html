@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="modal-body">
+  <form method="POST" action="{{ url_for('add_room') }}">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="bmd-label-floating">Room Id</label>
+          <input type="text" name="room_id" class="form-control" value="{{ request.form.room_id }}" required>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="bmd-label-floating">Email</label>
+          <input type="email" name="email" class="form-control" value="{{ request.form.email }}" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="bmd-label-floating">Name</label>
+          <input type="text" name="name" class="form-control" value="{{ request.form.name }}" required>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="bmd-label-floating">sitting</label>
+          <input type="text" name="sitting" class="form-control" value="{{ request.form.sitting }}" required>
+        </div>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-login float-right" style="background-color:#4BD1A0;">Add Room</button>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">People Portal</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ url_for('show_employee') }}">Employees</a></li>
+            <li><a href="{{ url_for('show_rooms') }}">Rooms</a></li>
+            <li><a href="{{ url_for('add_employee') }}">New Employee </a></li>    
+            <li><a href="{{ url_for('add_room') }}">New Room </a></li>         
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+</nav>

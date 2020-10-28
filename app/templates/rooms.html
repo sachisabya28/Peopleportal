@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% if rooms %}
+<table class="table table-hover">
+    <thead class="text-success">
+        <th>ROOM ID</th>
+        <th>NAME</th>
+        <th>BOOKING EMAIL</th>
+        <th>SITTING</th>
+        <th>Current Status</th>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.room_id }}</td>
+                <td>{{ room.name }}</td>
+                <td>{{ room.email }}</td>
+                <td>{{ room.sitting }}</td>
+                <td>{{ room.status }}</td>
+                <td>
+                    <button type="button" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#edit-room-{{ room.room_id }}-modal">
+                      <i class="material-icons" style="color: purple;">edit</i>
+                    </button>
+                    <div class="modal fade" id="edit-room-{{ room.room_id }}-modal" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit Rooms</h4>
+                          </div>
+                          <div class="modal-body">
+                            <form class="login-form" action="{{ url_for('edit_room', id=room.room_id) }}" method="post" style="padding-right: 30px !important; padding-left: 30px !important;">
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="bmd-label-floating">Name</label>
+                                    <input type="text" name="name" class="form-control" value="{{ room.name }}" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label class="bmd-label-floating">Email</label>
+                                    <input type="email" name="email" class="form-control" value="{{ room.email }}" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label class="bmd-label-floating">Sitting</label>
+                                    <input type="text" name="sitting" class="form-control" value="{{ room.sitting }}" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="bmd-label-floating">Status</label>
+                                    <input type="text" name="position" class="form-control" value="{{ room.status }}" required>
+                                  </div>
+                                </div>
+                              </div>
+                              <button type="submit" class="btn btn-login float-right" data-background-color="main">Save</button>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" data-background-color="red">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" rel="tooltip" title="Delete" class="btn btn-danger btn-simple btn-xs">
+                      <a href="{{ url_for('delete_room', id=room.room_id) }}">
+                        <i class="material-icons" style="color: red;">delete</i>
+                      </a>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p> There are currently no rooms in the database. </p>
+{% endif %}
+{% endblock %}

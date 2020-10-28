@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% if employee %}
+<table class="table table-hover">
+    <thead class="text-success">
+        <th>EMP ID</th>
+        <th>NAME</th>
+        <th>EMAIL</th>
+        <th>POSITION</th>
+        <th>TEAM</th>
+        <th>PHONE</th>
+        <th>EDIT</th>
+        <th>DELETE</th>
+    </thead>
+    <tbody>
+        {% for emp in employee %}
+            <tr>
+                <td>{{ emp.emp_id }}</td>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{ emp.position }}</td>
+                <td>{{ emp.team }}</td>
+                <td>{{ emp.phone }}</td>
+
+                <td>
+                    <button type="button" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#edit-emp-{{ emp.emp_id }}-modal">
+                      <i class="material-icons" style="color: purple;">edit</i>
+                    </button>
+                    <div class="modal fade" id="edit-emp-{{ emp.emp_id }}-modal" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit Employee</h4>
+                          </div>
+                          <div class="modal-body">
+                            <form class="login-form" action="{{ url_for('edit_emp', id=emp.emp_id) }}" method="post" style="padding-right: 30px !important; padding-left: 30px !important;">
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="bmd-label-floating">Name</label>
+                                    <input type="text" name="name" class="form-control" value="{{ emp.name }}" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label class="bmd-label-floating">Email</label>
+                                    <input type="email" name="email" class="form-control" value="{{ emp.email }}" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label class="bmd-label-floating">Position</label>
+                                    <input type="text" name="position" class="form-control" value="{{ emp.position }}" required>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label class="bmd-label-floating">Team</label>
+                                      <input type="text" name="team" class="form-control" value="{{ emp.team }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label class="bmd-label-floating">Phone</label>
+                                      <input type="text" name="phone" class="form-control" value="{{ emp.phone }}" required>
+                                    </div>
+                                </div>
+                              </div>
+                              <button type="submit" class="btn btn-login float-right" data-background-color="main">Save</button>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" data-background-color="red">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" rel="tooltip" title="Delete" class="btn btn-danger btn-simple btn-xs">
+                      <a href="{{ url_for('delete_emp', id=emp.emp_id) }}">
+                        <i class="material-icons" style="color: red;">delete</i>
+                      </a>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p> There are currently no employee in the database. </p>
+{% endif %}
+{% endblock %}
