@@ -10,7 +10,7 @@ from app.helper import save_changes, get_access, delete_resource, save_changes_a
 if os.getenv("ENVIRONMENT") == "development":
     path = "http://127.0.0.1:5000/"
 else:
-    path = ""
+    path = "https://people-portal.herokuapp.com/"
 
 
 # Flash errors from the form if validation fails

@@ -79,7 +79,7 @@ Run ```python run.py```.
 
 ## Web App
 
-The app has a web-based interface and can be accessed [here](/). A sample user has already been created with the following credentials:
+The app has a web-based interface and can be accessed [https://people-portal.herokuapp.com/]. A sample user has already been created with the following credentials:
 
 ```
 #admin user login
