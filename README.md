@@ -63,9 +63,9 @@ options
   'development'
   'production'
   'testing'
-```
+```  
 
-Initialize, migrate, and upgrade the database:
+Initialize, migrate, and upgrade the database for setup
 ```
 python manage.py db init
 python manage.py db migrate
